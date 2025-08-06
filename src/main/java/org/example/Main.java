@@ -79,11 +79,11 @@ public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         
-        System.out.print("N: ");
+        System.out.print("rows: ");
         int rows = scanner.nextInt();
         scanner.nextLine();
 
-        System.out.print("M: ");
+        System.out.print("cols: ");
         int cols = scanner.nextInt();
         scanner.nextLine();
 
