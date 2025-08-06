@@ -1,32 +1,29 @@
 package org.example;
 
 import java.util.HashSet;
-
+import java.util.Set;
 
 public class Main {
+    private static final Set<Character> VOWELS = Set.of('a', 'e', 'i', 'o', 'u');
+
     public static void main(String[] args) {
-
-        var count = countVowels("Hello, World!io");
-        System.out.println(count);
-
+        int count = countUniqueVowels("Hello, World!");
+        System.out.println(count); 
     }
 
-    private static int countVowels(String string) {
-        var vowelsMap = new HashSet<>() {};
-        var result = new HashSet<>() {};
+    public static int countUniqueVowels(String input) {
+        if (input == null || input.isEmpty()) {
+            return 0;
+        }
 
-        vowelsMap.add('a');
-        vowelsMap.add('e');
-        vowelsMap.add('i');
-        vowelsMap.add('o');
-        vowelsMap.add('u');
-
-        for (int i = 0; i < string.length(); i++) {
-            var currentChar = string.charAt(i);
-            if (vowelsMap.contains(currentChar)){
-                result.add(currentChar);
+        Set<Character> uniqueVowels = new HashSet<>();
+        
+        for (char currentChar : input.toLowerCase().toCharArray()) {
+            if (VOWELS.contains(currentChar)) {
+                uniqueVowels.add(currentChar);
             }
         }
-        return result.size();
+        
+        return uniqueVowels.size();
     }
 }
