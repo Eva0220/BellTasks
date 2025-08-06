@@ -4,7 +4,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 public class Main {
-    private static final Set<Character> VOWELS = Set.of('a', 'e', 'i', 'o', 'u');
+    private static final Set<Character> VOWELS = Set.of('a', 'e', 'i', 'o', 'u'); //y
 
     public static void main(String[] args) {
         int count = countUniqueVowels("Hello, World!");
