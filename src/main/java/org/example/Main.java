@@ -70,37 +70,68 @@ public class Main {
 
 
 /*3*/
+package org.example;
 
 import java.util.Scanner;
 import java.util.Random;
 
-public class NeighborSumCalculator {
+public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         
-        // 1. Запрос размеров массива у пользователя
-        System.out.print("Введите количество строк (N): ");
+        System.out.print("N: ");
         int rows = scanner.nextInt();
-        System.out.print("Введите количество столбцов (M): ");
+        scanner.nextLine();
+
+        System.out.print("M: ");
         int cols = scanner.nextInt();
-        
-        // 2. Создание и заполнение массива случайными числами
+        scanner.nextLine();
+
         int[][] originalArray = createRandomArray(rows, cols);
-        
-        // 3. Создание массива для сумм соседей
-        int[][] neighborSums = calculateNeighborSums(originalArray);
-        
-        // 6. Вывод массивов
-        System.out.println("\nИсходный массив:");
+        System.out.println("Сгенерированный массив");
         printArray(originalArray);
-        
-        System.out.println("\nМассив сумм соседей:");
-        printArray(neighborSums);
+
+        int[][] resultArray = calculateSums(originalArray);
+        System.out.println("Массив после вычисления");
+        printArray(resultArray);
         
         scanner.close();
     }
-    
-    // Создает и заполняет массив случайными числами от 1 до 9
+
+    private static int[][] calculateSums(int[][] array) {
+        int rows = array.length;
+        int cols = array[0].length;
+        int[][] sums = new int[rows][cols];
+
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < cols; j++) {
+                sums[i][j] = 0;
+
+                // Проверяем сверху
+                if (i > 0) {
+                    sums[i][j] += array[i-1][j];
+                }
+
+                // Проверяем снизу
+                if (i < rows - 1) {
+                    sums[i][j] += array[i+1][j];
+                }
+
+                // Проверяем слева
+                if (j > 0) {
+                    sums[i][j] += array[i][j-1];
+                }
+
+                // Проверяем справа
+                if (j < cols - 1) {
+                    sums[i][j] += array[i][j+1];
+                }
+            }
+        }
+
+        return sums;
+    }
+
     private static int[][] createRandomArray(int rows, int cols) {
         int[][] array = new int[rows][cols];
         Random random = new Random();
@@ -113,43 +144,7 @@ public class NeighborSumCalculator {
         
         return array;
     }
-    
-    // Вычисляет суммы соседей для каждого элемента
-    private static int[][] calculateNeighborSums(int[][] array) {
-        int rows = array.length;
-        int cols = array[0].length;
-        int[][] sums = new int[rows][cols];
-        
-        for (int i = 0; i < rows; i++) {
-            for (int j = 0; j < cols; j++) {
-                sums[i][j] = 0;
-                
-                // Проверяем соседа сверху
-                if (i > 0) {
-                    sums[i][j] += array[i-1][j];
-                }
-                
-                // Проверяем соседа снизу
-                if (i < rows - 1) {
-                    sums[i][j] += array[i+1][j];
-                }
-                
-                // Проверяем соседа слева
-                if (j > 0) {
-                    sums[i][j] += array[i][j-1];
-                }
-                
-                // Проверяем соседа справа
-                if (j < cols - 1) {
-                    sums[i][j] += array[i][j+1];
-                }
-            }
-        }
-        
-        return sums;
-    }
-    
-    // Выводит массив в консоль
+
     private static void printArray(int[][] array) {
         for (int[] row : array) {
             for (int num : row) {
