@@ -8,11 +8,11 @@ public class Main {
     private static final Set<Character> VOWELS = Set.of('a', 'e', 'i', 'o', 'u'); //y
 
     public static void main(String[] args) {
-        int count = countUniqueVowels("Hello, World!");
-        System.out.println(count); 
+        int count = countVowels("Hello, World!");
+        System.out.println(count);
     }
 
-    public static int countUniqueVowels(String input) {
+    public static int countVowels(String input) {
         if (input == null || input.isEmpty()) {
             return 0;
         }
@@ -69,3 +69,9 @@ public class Main {
         return maxCount;
     }
 }
+
+
+
+/*3*/
+
+
