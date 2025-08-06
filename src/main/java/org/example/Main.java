@@ -53,6 +53,29 @@ public class Main {
              *   Аргумент: [12,13,2,4,3,5,11,15,14]
              *   Вывод: 4
  */
+     public static int findLongestIncreasingSequenceLength(int[] numbers) {
+        if (numbers == null) {
+            throw new IllegalArgumentException("Input array cannot be null");
+        }
+        
+        if (numbers.length == 0) {
+            return 0;
+        }
+
+        int currentSequenceLength = 1;
+        int maxSequenceLength = 1;
+
+        for (int i = 1; i < numbers.length; i++) {
+            if (numbers[i] > numbers[i - 1]) {
+                currentSequenceLength++;
+                maxSequenceLength = Math.max(maxSequenceLength, currentSequenceLength);
+            } else {
+                currentSequenceLength = 1;
+            }
+        }
+
+        return maxSequenceLength;
+    }
     private static int countStep(int[] m) {
         var currentCount = 0;
         var maxCount = 0;
